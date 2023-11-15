@@ -21,9 +21,12 @@ case class IndexPage(tasks: List[Task], addTaskMapping: Mapping[String]):
           """/*
             | * Enter your CSS code here (optional)
             | */
-            | .h1 {
-            |   color: yellow;
-            | }
+            | td {padding: 10px !important; border-right: 1px solid brown; border-top: 1px solid brown }
+            | td:nth-child(1) { width: 20%; border-top: none }
+            | td:nth-child(2) { width: 40%; }
+            | td:nth-child(3) { width: 40%; border-right: none; display: flex }
+            | table { border: 1px solid brown !important }
+            | button { cursor: pointer; background: none; border-radius: 4px; padding: 8px; margin-right: 10px; border: 1px solid  rgba(0,0,0,0.7)  }
             |""".stripMargin)
       )
     ),
@@ -49,7 +52,6 @@ case class IndexPage(tasks: List[Task], addTaskMapping: Mapping[String]):
               tr(
                 td(cls := "collapsing", h1(task.id)),
                 td(h3(task.description)),
-                td(cls := "collapsing"),
                 td(
                   form(cls := "ui form", method := "POST", action := HomeController.deleteTask(task.id).endpoint.url)(
                     button(cls := "ui primary button", "Delete")
